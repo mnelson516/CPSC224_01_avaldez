@@ -4,11 +4,32 @@
 package assignment1;
 import java.util.Scanner;
 import java.lang.Math;
-import java.util.Random;
 
 public class Assignment1 {
     public static void main(String[] args) {
-     
+    final int DICE_IN_PLAY = 5;
+    int []hand;
+    hand = new int [DICE_IN_PLAY];
+    //srand(time(0));
+    char playAgain = 'y';
+    
+    while (playAgain == 'y')
+    {
+        String keep = "nnnnn";
+        int turn = 1;
+        
+        while (turn < 4 && keep != "yyyyy")
+        {
+            for (int dieNumber = 0; dieNumber < DICE_IN_PLAY; dieNumber++)
+            {
+              if (keep[dieNumber] != 'y') 
+              {
+                  hand[dieNumber] = rollDie();
+              }
+            }
+            
+        }
+    }
     }
     
     public static int rollDie()
@@ -60,9 +81,9 @@ public class Assignment1 {
                 if (array[count] > array[count + 1])
                 {
                    temp = array[count];
-                array[count] = array[count + 1];
-                array [count + 1] = temp;
-                swap = true; 
+                   array[count] = array[count + 1];
+                   array [count + 1] = temp;
+                   swap = true; 
                 }
             }
         }
