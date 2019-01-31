@@ -7,29 +7,95 @@ import java.lang.Math;
 
 public class Assignment1 {
     public static void main(String[] args) {
-    final int DICE_IN_PLAY = 5;
-    int []hand;
-    hand = new int [DICE_IN_PLAY];
-    //srand(time(0));
-    char playAgain = 'y';
-    
-    while (playAgain == 'y')
-    {
-        String keep = "nnnnn";
-        int turn = 1;
         
-        while (turn < 4 && keep != "yyyyy")
+        Scanner scnr = new Scanner(System.in);
+        final int DICE_IN_PLAY = 5;
+        int [] hand = new int [DICE_IN_PLAY];
+        int r = (int) (Math.random() *5);
+        char playAgain = 'y';
+        
+        
+        while (playAgain == 'y')
         {
-            for (int dieNumber = 0; dieNumber < DICE_IN_PLAY; dieNumber++)
+            String keep = "nnnnn";
+            int turn = 1;
+            while (turn < 4 && keep != "yyyyy")
             {
-              if (keep[dieNumber] != 'y') 
-              {
-                  hand[dieNumber] = rollDie();
-              }
+                for (int dieNumber = 0; dieNumber < DICE_IN_PLAY; dieNumber++)
+                {
+                    if (keep[dieNumber] != 'y')
+                        hand[dieNumber] = rollDie();
+                }
+                System.out.println("your role was: ");
+                for ( int dieNumber = 0; dieNumber < DICE_IN_PLAY; dieNumber++)
+                {
+                    System.out.println(hand[dieNumber]+ " ");
+                }
+                System.out.println();
+                
+                if (turn < 3)
+                {
+                    System.out.println("Enter dice to keep (y or n)");
+                    keep = scnr.nextLine();
+                }
+                turn ++;
             }
             
+            sortArray(hand, DICE_IN_PLAY);
+            System.out.println("Here is your sorted hand : ");
+            for (int dieNumber = 0; dieNumber < DICE_IN_PLAY; dieNumber++)
+            {
+                System.out.println(hand[dieNumber] + " ");
+            }
+            System.out.println();
+            
+            for (int dieValue = 1; dieValue <= 6; dieValue++)
+            {
+                int currentCount = 0;
+                for (int diePosition = 0; diePosition < 5; diePosition++)
+                {
+                    if (hand[diePosition] == dieValue)
+                        currentCount++;
+                }
+                System.out.println(" Score " + (dieValue * currentCount) + " on the " + dieValue + " line ");
+            }
+            if (maxOfAKindFound(hand) >= 3)
+            {
+                System.out.println("Score " + totalAllDice(hand) + " on the 3 of a Kind line " );
+            }
+            else System.out.println("Score 0 on the 3 of a Kind line");
+            
+            if (maxOfAKindFound(hand) >= 4)
+            {
+                System.out.println("Score " + totalAllDice(hand) + " on the 4 of a Kind line " );
+            }
+            else System.out.println("Score 0 on the 4 of a Kind line");
+            
+            if (fullHouseFound(hand))
+                System.out.println("Score 25 on the Full House line");
+            else
+                System.out.println("Score 0 ont he Full House line");
+            
+            if (maxStraightFound(hand) >= 4)
+                System.out.println("Score 30 on the Small Straight line");
+            else 
+                System.out.println("Score 0 on the Small Straight line");
+            
+            if (maxStraightFound(hand) >= 5)
+                System.out.println("Score 40 on the Large Straight line");
+            else 
+                System.out.println("Score 0 on the Large Straight line");
+            
+            if (maxOfAKindFound(hand) >=5)
+                System.out.println("Score 50 on the Yahtzee line");
+            else
+                System.out.println("Score 0 on the Yahtzee line");
+            
+            System.out.println("Score " + totalAllDice(hand) + " on the Chance line");
+            
+            System.out.println("Enter 'y' to play again");
+            playAgain = scnr.next().charAt(0);           
         }
-    }
     }
     
     public static int rollDie()
