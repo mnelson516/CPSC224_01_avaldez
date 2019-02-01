@@ -1,6 +1,8 @@
-/*
-
- */
+/***************
+Homework #1
+Due Date: 1/31/19
+Names:Armando Valdez & Max Nelson
+********************/
 package assignment1;
 import java.util.Scanner;
 import java.lang.Math;
@@ -11,7 +13,6 @@ public class Assignment1 {
         Scanner scnr = new Scanner(System.in);
         final int DICE_IN_PLAY = 5;
         int [] hand = new int [DICE_IN_PLAY];
-        int r = (int) (Math.random() *5);
         char playAgain = 'y';
         
         
@@ -19,21 +20,21 @@ public class Assignment1 {
         {
             String keep = "nnnnn";
             int turn = 1;
-            while (turn < 4 && keep != "yyyyy")
+            while (turn <= 4 && keep != "yyyyy")
             {
                 for (int dieNumber = 0; dieNumber < DICE_IN_PLAY; dieNumber++)
                 {
-                    if (keep[dieNumber] != 'y')
+                    if (keep.charAt(dieNumber) != 'y')
                         hand[dieNumber] = rollDie();
                 }
-                System.out.println("your role was: ");
+                System.out.println("your roll was: ");
                 for ( int dieNumber = 0; dieNumber < DICE_IN_PLAY; dieNumber++)
                 {
-                    System.out.println(hand[dieNumber]+ " ");
+                    System.out.print(hand[dieNumber]+ " ");
                 }
                 System.out.println();
                 
-                if (turn < 3)
+                if (turn < 4)
                 {
                     System.out.println("Enter dice to keep (y or n)");
                     keep = scnr.nextLine();
@@ -45,7 +46,7 @@ public class Assignment1 {
             System.out.println("Here is your sorted hand : ");
             for (int dieNumber = 0; dieNumber < DICE_IN_PLAY; dieNumber++)
             {
-                System.out.println(hand[dieNumber] + " ");
+                System.out.print(hand[dieNumber] + " ");
             }
             System.out.println();
             
@@ -101,7 +102,7 @@ public class Assignment1 {
     public static int rollDie()
     {
         int roll;
-        roll = (int)(Math.random() % 6 + 1);
+        roll = (int)(Math.random() * 6 + 1);
         return roll;
     }
     
