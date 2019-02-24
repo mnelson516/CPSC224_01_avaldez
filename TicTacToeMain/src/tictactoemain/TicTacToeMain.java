@@ -111,7 +111,7 @@ public class TicTacToeMain extends JFrame {
         
         if(playerNum == 1)
         {
-            panel.setBorder(BorderFactory.createTitledBorder("player 1"));
+            panel.setBorder(BorderFactory.createTitledBorder("player 1 (X)"));
             panel.setLayout(new GridLayout(3,2));
             panel.add(new JLabel("Name: ", SwingConstants.RIGHT));
             panel.add(player1);
@@ -122,7 +122,7 @@ public class TicTacToeMain extends JFrame {
         }
         else
         {
-            panel.setBorder(BorderFactory.createTitledBorder("player 2"));
+            panel.setBorder(BorderFactory.createTitledBorder("player 2 (O)"));
             panel.setLayout(new GridLayout(3,2));
             panel.add(new JLabel("Name: ", SwingConstants.RIGHT));
             panel.add(player2);
@@ -177,6 +177,7 @@ public class TicTacToeMain extends JFrame {
                         player1.setText("");
                         player2.setText("");
                         validStart = false;
+                        statusLabel.setText("Welcome to TIC TAC TOE!!");
                         player1.setEditable(true);
                         player2.setEditable(true);
                         
