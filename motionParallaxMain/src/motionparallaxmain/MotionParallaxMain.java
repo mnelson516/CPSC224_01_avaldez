@@ -51,9 +51,13 @@ public class MotionParallaxMain extends JFrame {
       int blackMountainY[] = {550, 150, 550};
       int grassX = -200;
       int grassY = 350;
+      int sunX = 150;
+      int sunY = 100;
       
       for (int i = 0; i < 3; i++)
       {
+          sunX += currentX * 0.01;
+          sunY += currentY * 0.01;
           darkGrayMountainX[i] += currentX * .2;
           darkGreyMountainY[i] += currentY * .2;
           lightGrayMountainX[i] += currentX * .3; 
@@ -68,6 +72,10 @@ public class MotionParallaxMain extends JFrame {
       //Sets background for the sky
       g.setColor(Color.blue);
       g.fillRect(0, 0, 500, 500);
+      
+      //draws the sun
+      g.setColor(Color.YELLOW);
+      g.fillOval(sunX, sunY, 50,50);
       
       //Draws the mountains 
       g.setColor(Color.darkGray);
